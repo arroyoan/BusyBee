@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
     match: [
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
       'Password must have at least one lowercase letter and uppercase letter, one number, and on special character '
-    ]
+    ],
   },
   name: {
     type: String,
@@ -27,12 +27,27 @@ const UserSchema = new mongoose.Schema({
   isAdmin: {
     type: Boolean,
     default: false
-  }
+  },
+  resetPasswordToken: String,
+  resetPasswordExpired: Date
 }, { timestamps: true })
 
-// Instance Methods for users
+// encrypt password before saving to DB
+UserSchema.pre('save', async function (next) {
+  // checks to see if the password was modified
+  if (!this.isModified('password')) {
+    next()
+  }
 
-//this is where the encrypt password goes
+  // creates salt and hashes the password
+  const salt = await bcrypt.genSalt(10)
+  this.password = await bcrypt.hash(this.password, salt)
+})
+
+// Instance Methods
+UserSchema.methods.comparePasswords = async function (submittedPassword) {
+  return await bcrypt.compare(submittedPassword, this.password)
+}
 
 const User = mongoose.model('User', UserSchema)
 

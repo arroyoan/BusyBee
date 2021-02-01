@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import morgan from 'morgan'
 
+import UserRoutes from './routes/UserRoutes.js'
 import connectDB from './config/db.js'
 
 // Bring in the environment
@@ -14,19 +15,19 @@ connectDB()
 // Start express 
 const app = express()
 
-// Set up Routes
-app.get('/', (req, res) => {
-  res.send('Start of Busy Bee')
-})
-
-
 // Middleware
+// Json Parser Middleware
+app.use(express.json())
 
-
-// Middleware I wrote
+// Morgan
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
+
+// Mounting Routes
+app.use('/api/v1/users/', UserRoutes)
+
+// Custom Middleware
 
 const PORT = process.env.PORT || 5000
 
