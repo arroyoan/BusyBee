@@ -25,8 +25,9 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please add a name']
   },
   isAdmin: {
-    type: Boolean,
-    default: false
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
   },
   resetPasswordToken: String,
   resetPasswordExpired: Date

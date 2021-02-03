@@ -3,7 +3,8 @@ import express from 'express'
 import {
   registerUser,
   loginUser,
-  getProfile
+  getProfile,
+  updateProfile
 } from '../controllers/UserController.js'
 
 import {
@@ -18,6 +19,7 @@ router.route('/')
 
 router.route('/profile')
   .get(userAuth, getProfile)
+  .put(userAuth, updateProfile)
 
 router.route('/login')
   .post(loginUser)

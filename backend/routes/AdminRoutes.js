@@ -2,7 +2,9 @@ import express from 'express'
 
 import {
   getAllUsers,
-  getSingleUser
+  getSingleUser,
+  updateUser,
+  deleteUser
 } from '../controllers/AdminController.js'
 
 import {
@@ -18,5 +20,7 @@ router.route('/')
 
 router.route('/:id')
   .get(userAuth, admin, getSingleUser)
+  .put(userAuth, admin, updateUser)
+  .delete(userAuth, admin, deleteUser)
 
 export default router
