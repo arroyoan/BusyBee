@@ -4,6 +4,7 @@ import colors from 'colors'
 import morgan from 'morgan'
 
 import UserRoutes from './routes/UserRoutes.js'
+import AdminRoutes from './routes/AdminRoutes.js'
 import connectDB from './config/db.js'
 
 // Bring in the environment
@@ -26,6 +27,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Mounting Routes
 app.use('/api/v1/users/', UserRoutes)
+app.use('/api/v1/auth/', AdminRoutes)
 
 // Custom Middleware
 

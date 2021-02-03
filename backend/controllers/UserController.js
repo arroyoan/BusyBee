@@ -59,33 +59,15 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    Get All Users
-// @route   GET /api/v1/users/
-// @access  Private/Admin
-const getAllUsers = asyncHandler(async (req, res) => {
-  const users = await User.find()
-  res.status(200).json(users)
-})
-
-// @desc    Get Single User
+// @desc    Get user info
 // @route   GET /api/v1/users/profile
 // @access  Private
-const getSingleUser = asyncHandler(async (req, res) => {
-  // need to do req.user._id with the token
+const getProfile = asyncHandler(async (req, res) => {
+  // uses req.user._id
+  res.json({
+    message: 'Will get to this route'
+  })
 })
-
-
-// @desc    Update User Info
-// @route   PUT /api/v1/users/:id
-// @access  Private
-const updateUser = asyncHandler(async (req, res) => { })
-
-
-// @desc    Delete User
-// @route   DELETE /api/v1/users/:id
-// @access  Private
-const deleteUser = asyncHandler(async (req, res) => { })
-
 
 // @desc    Forgot Password
 // @route   PUT /api/v1/users/forgotpassword
@@ -94,8 +76,5 @@ const deleteUser = asyncHandler(async (req, res) => { })
 export {
   registerUser,
   loginUser,
-  getAllUsers,
-  getSingleUser,
-  updateUser,
-  deleteUser
+  getProfile
 }
