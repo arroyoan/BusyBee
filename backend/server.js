@@ -5,6 +5,7 @@ import morgan from 'morgan'
 
 import UserRoutes from './routes/UserRoutes.js'
 import AdminRoutes from './routes/AdminRoutes.js'
+import SectionRoutes from './routes/SectionRoutes.js'
 import connectDB from './config/db.js'
 
 // Bring in the environment
@@ -28,6 +29,7 @@ if (process.env.NODE_ENV === 'development') {
 // Mounting Routes
 app.use('/api/v1/users/', UserRoutes)
 app.use('/api/v1/auth/', AdminRoutes)
+app.use('/api/v1/sections/', SectionRoutes)
 
 // Custom Middleware
 

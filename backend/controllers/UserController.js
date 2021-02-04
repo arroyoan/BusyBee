@@ -97,7 +97,6 @@ const updateProfile = asyncHandler(async (req, res) => {
   const newUser = await user.save({ validateModifiedOnly: true })
 
   res.status(200).json({
-    success: true,
     _id: newUser._id,
     email: newUser.email,
     name: newUser.name,
