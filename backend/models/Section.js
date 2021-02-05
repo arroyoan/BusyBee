@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const SectionSchema = new mongoose.Schema({
+const SectionSchema = mongoose.Schema({
   title: {
     type: String,
     minlength: [1, 'Please make the title at least 1 character long'],

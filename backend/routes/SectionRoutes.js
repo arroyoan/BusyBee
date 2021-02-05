@@ -11,7 +11,13 @@ import {
 // gets middlware
 import { userAuth } from '../middleware/auth.js'
 
+// get task router
+import taskRouter from './TaskRoutes.js'
+
 const router = express.Router()
+
+// reroute to task router
+router.use('/:sectionId/tasks/', taskRouter)
 
 // uses middle ware to check that user is authorized
 router.use(userAuth)
