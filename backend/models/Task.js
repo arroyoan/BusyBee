@@ -16,6 +16,10 @@ const TaskSchema = mongoose.Schema({
   notes: {
     type: String
   },
+  isSubTask: {
+    type: Boolean,
+    default: false
+  },
   priority: {
     type: String,
     enum: ['p1', '2', 'p3', 'p4', 'none'],
@@ -32,11 +36,14 @@ const TaskSchema = mongoose.Schema({
     required: true
   },
   subTasks: [{
-    task: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Task'
-    }
-  }]
+    type: mongoose.Schema.ObjectId,
+    ref: 'Task'
+  }],
+  parentTask: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Task',
+    default: null
+  }
 }, { timestamps: true })
 
 const Task = mongoose.model('Task', TaskSchema)
