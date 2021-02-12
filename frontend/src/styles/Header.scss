@@ -1,0 +1,55 @@
+@use 'colors';
+
+.navbar {
+  width: auto;
+  background: colors.$primary-color;
+  color: colors.$secondary-text-color;
+  position: relative;
+  display: flex;
+  padding: 10px 60px;
+  padding-left: 20px;
+  align-items: center;
+  justify-content: space-between;
+
+  &__hamburger {
+    position: absolute;
+    left: 0;
+    padding: 19px 20px;
+
+    &:hover {
+      background: lighten($color: colors.$primary-color, $amount: 20%);
+    }
+
+    i:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__logo {
+    padding-left: 40px;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    h3 {
+      font-size: 30px;
+    }
+  }
+
+  &__items {
+    ul {
+      display: flex;
+      list-style: none;
+    }
+    li {
+      padding: 0 20px;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      &:hover {
+        color: rgb(255, 148, 148);
+      }
+    }
+  }
+}
